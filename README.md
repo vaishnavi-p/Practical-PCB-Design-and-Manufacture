@@ -15,4 +15,4 @@ A custom Golden Arduino board PCB, incorporating signal and power integrity prin
 
 ## Instrument Droid
 An instrument Droid PCB board to characterize voltage sources and voltage regulator modules (VRMs) by accurately measuring their Thevenin voltage and resistance
-[image]
+![Instrument Droid PCB](https://github.com/vaishnavi-p/Practical-PCB-Design-and-Manufacture/blob/main/Instrument%20Droid/Instrument_droid_PCB.png)
