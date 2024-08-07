@@ -1,0 +1,608 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD23\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">3/9/2023</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2:05:34 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc" class="file"><acronym title="C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc">C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">88</td></tr>
+</table>
+</td>
+</table><a name="IDRXHTXHMJ3SSPBBOJOENPKMVVRH1OGVRBIWDSFJO0SRH23ISKW0FM"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQWM0BBW1RXQODHDUTRDGZ2OF5GB5RMQY1XFBHXO3WH0ZQTVO2H1L">Clearance Constraint (Gap=10mil) (All),(All)</a></td>
+<td class="column2">8</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1TNEZXLW0YWWPUCUGUBHLVCBIIAV2USLKYVFBSCXNKCVVF0ODX0F">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXTRKFNKSXCN4N4MT1HWKOZHQEPKCUKU50TW5BTNIEAFKLUR0UZHO">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDKCS4P3VCAO1AGJZUKQPCPUVWTF2NICHOTPWVEVMPCTYKRF5EXIUE">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIU3VZ2HPVYDN3TN00FSX5EMLOMA3VXBMMCKKWO4J4WBKG5JWDAO">Width Constraint (Min=6mil) (Max=100mil) (Preferred=6mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDKB0Y1MEJIPNSCPOSLWOA2TEPEIZH2SETA1EQFNKLKFBZSK3BQL0">Power Plane Connect Rule(Direct Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMWX1OTCFNKC5GYKJD5TOENJWGMPDFRV3F2EGXDGZDORY1YFHFRGP">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJTO42LEMFM2OB1ZZLATCA1FIIJ4EL0O21A2KGFFWSKC2LYM0F3LG">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDH4PJKI4V2V2BBD10KUPLM04N3DDAFBWXLRJ1LYDPNXKH5Q0QVJQL">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">55</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZNYD53RBHPHCDVABCL5PIV4XJO2AOMUPHUANVCHAQGM0RPXVQ2EE">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">16</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCJKR3X245H2LONISK3O5J13MLMK55EPXO4IGCGC5Y2BSMQMO0KMM">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">7</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0ELDDD1S0QDRN31K4CLLFNMJDKOPADHLCUJERNITRDNPIQGM2BNN">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFOSX5OMV3GAQHBDYE3FMBV3D1NDJOSNV0MKGXWIJOYNP4HHMI1VG">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">88</td>
+</tr>
+</table><br><a name="IDQWM0BBW1RXQODHDUTRDGZ2OF5GB5RMQY1XFBHXO3WH0ZQTVO2H1L"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2331.048mil|Location2.X=2342.298mil|Location1.Y=3468.076mil|Location2.Y=3479.326mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2331.048mil|Location2.X=2342.298mil|Location1.Y=3468.076mil|Location2.Y=3479.326mil|Absolute=True">Clearance Constraint: (9.842mil &lt; 10mil) Between Pad D1-1(1316.988mil,2177.402mil) on Top Layer And Pad D1-2(1316.988mil,2140mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2331.048mil|Location2.X=2342.298mil|Location1.Y=3430.674mil|Location2.Y=3441.924mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2331.048mil|Location2.X=2342.298mil|Location1.Y=3430.674mil|Location2.Y=3441.924mil|Absolute=True">Clearance Constraint: (9.842mil &lt; 10mil) Between Pad D1-2(1316.988mil,2140mil) on Top Layer And Pad D1-3(1316.988mil,2102.598mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2384.69mil|Location2.X=2395.94mil|Location1.Y=3430.674mil|Location2.Y=3441.924mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2384.69mil|Location2.X=2395.94mil|Location1.Y=3430.674mil|Location2.Y=3441.924mil|Absolute=True">Clearance Constraint: (9.842mil &lt; 10mil) Between Pad D1-4(1410mil,2102.598mil) on Top Layer And Pad D1-5(1410mil,2140mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2384.69mil|Location2.X=2395.94mil|Location1.Y=3468.076mil|Location2.Y=3479.326mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2384.69mil|Location2.X=2395.94mil|Location1.Y=3468.076mil|Location2.Y=3479.326mil|Absolute=True">Clearance Constraint: (9.842mil &lt; 10mil) Between Pad D1-5(1410mil,2140mil) on Top Layer And Pad D1-6(1410mil,2177.402mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3500.835mil|Location2.Y=3512.085mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3500.835mil|Location2.Y=3512.085mil|Absolute=True">Clearance Constraint: (9.654mil &lt; 10mil) Between Pad J1-1(306.254mil,2207.205mil) on Multi-Layer And Pad J1-2(258.864mil,2175.715mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3469.34mil|Location2.Y=3480.59mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3469.34mil|Location2.Y=3480.59mil|Absolute=True">Clearance Constraint: (9.66mil &lt; 10mil) Between Pad J1-2(258.864mil,2175.715mil) on Multi-Layer And Pad J1-3(306.254mil,2144.215mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3437.845mil|Location2.Y=3449.095mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3437.845mil|Location2.Y=3449.095mil|Absolute=True">Clearance Constraint: (9.654mil &lt; 10mil) Between Pad J1-3(306.254mil,2144.215mil) on Multi-Layer And Pad J1-4(258.864mil,2112.725mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3406.35mil|Location2.Y=3417.6mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3406.35mil|Location2.Y=3417.6mil|Absolute=True">Clearance Constraint: (9.66mil &lt; 10mil) Between Pad J1-4(258.864mil,2112.725mil) on Multi-Layer And Pad J1-5(306.254mil,2081.225mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDMWX1OTCFNKC5GYKJD5TOENJWGMPDFRV3F2EGXDGZDORY1YFHFRGP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1531.54mil|Location2.X=1650.901mil|Location1.Y=1540.32mil|Location2.Y=1659.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1531.54mil|Location2.X=1650.901mil|Location1.Y=1540.32mil|Location2.Y=1659.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Pad P1-1(591.221mil,285mil) on Multi-Layer Actual Slot Hole Width = 118.11mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1295.32mil|Location2.X=1414.68mil|Location1.Y=1540.32mil|Location2.Y=1659.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1295.32mil|Location2.X=1414.68mil|Location1.Y=1540.32mil|Location2.Y=1659.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Pad P1-2(355mil,285mil) on Multi-Layer Actual Slot Hole Width = 118.11mil</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDH4PJKI4V2V2BBD10KUPLM04N3DDAFBWXLRJ1LYDPNXKH5Q0QVJQL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2339.375mil|Location2.X=2350.625mil|Location1.Y=1718.875mil|Location2.Y=1730.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2339.375mil|Location2.X=2350.625mil|Location1.Y=1718.875mil|Location2.Y=1730.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3mil &lt; 10mil) Between Pad C1-1(1345mil,382mil) on Top Layer And Via (1345mil,440mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [3mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.375mil|Location2.X=1490.625mil|Location1.Y=3462.875mil|Location2.Y=3474.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.375mil|Location2.X=1490.625mil|Location1.Y=3462.875mil|Location2.Y=3474.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5mil &lt; 10mil) Between Pad C11-1(485mil,2125mil) on Top Layer And Via (485mil,2185mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.375mil|Location2.X=1490.625mil|Location1.Y=3524.875mil|Location2.Y=3536.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.375mil|Location2.X=1490.625mil|Location1.Y=3524.875mil|Location2.Y=3536.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3mil &lt; 10mil) Between Pad C11-2(485mil,2243mil) on Top Layer And Via (485mil,2185mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [3mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2339.375mil|Location2.X=2350.625mil|Location1.Y=1780.875mil|Location2.Y=1792.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2339.375mil|Location2.X=2350.625mil|Location1.Y=1780.875mil|Location2.Y=1792.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5mil &lt; 10mil) Between Pad C1-2(1345mil,500mil) on Top Layer And Via (1345mil,440mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3541.716mil|Location2.X=3552.966mil|Location1.Y=2589.314mil|Location2.Y=2600.564mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3541.716mil|Location2.X=3552.966mil|Location1.Y=2589.314mil|Location2.Y=2600.564mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4.122mil &lt; 10mil) Between Pad C12-1(2540mil,1308mil) on Top Layer And Via (2547.341mil,1248.878mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [4.122mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3541.716mil|Location2.X=3552.966mil|Location1.Y=2527.314mil|Location2.Y=2538.564mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3541.716mil|Location2.X=3552.966mil|Location1.Y=2527.314mil|Location2.Y=2538.564mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.878mil &lt; 10mil) Between Pad C12-2(2540mil,1190mil) on Top Layer And Via (2547.341mil,1248.878mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [3.878mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1334.875mil|Location2.X=1346.125mil|Location1.Y=3654.375mil|Location2.Y=3665.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1334.875mil|Location2.X=1346.125mil|Location1.Y=3654.375mil|Location2.Y=3665.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5mil &lt; 10mil) Between Pad C2-1(312mil,2345mil) on Top Layer And Via (372mil,2345mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1396.875mil|Location2.X=1408.125mil|Location1.Y=3654.375mil|Location2.Y=3665.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1396.875mil|Location2.X=1408.125mil|Location1.Y=3654.375mil|Location2.Y=3665.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3mil &lt; 10mil) Between Pad C2-2(430mil,2345mil) on Top Layer And Via (372mil,2345mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [3mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1109.375mil|Location2.X=1120.625mil|Location1.Y=1997.375mil|Location2.Y=2008.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1109.375mil|Location2.X=1120.625mil|Location1.Y=1997.375mil|Location2.Y=2008.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4mil &lt; 10mil) Between Pad C3-1(115mil,660mil) on Top Layer And Via (115mil,719mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [4mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1109.375mil|Location2.X=1120.625mil|Location1.Y=2059.375mil|Location2.Y=2070.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1109.375mil|Location2.X=1120.625mil|Location1.Y=2059.375mil|Location2.Y=2070.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4mil &lt; 10mil) Between Pad C3-2(115mil,778mil) on Top Layer And Via (115mil,719mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [4mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1498.875mil|Location2.X=1510.125mil|Location1.Y=1864.375mil|Location2.Y=1875.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1498.875mil|Location2.X=1510.125mil|Location1.Y=1864.375mil|Location2.Y=1875.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5mil &lt; 10mil) Between Pad C4-1(476mil,555mil) on Top Layer And Via (536mil,555mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1560.875mil|Location2.X=1572.125mil|Location1.Y=1864.375mil|Location2.Y=1875.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1560.875mil|Location2.X=1572.125mil|Location1.Y=1864.375mil|Location2.Y=1875.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3mil &lt; 10mil) Between Pad C4-2(594mil,555mil) on Top Layer And Via (536mil,555mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [3mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3253.891mil|Location2.X=3265.141mil|Location1.Y=2784.377mil|Location2.Y=2795.627mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3253.891mil|Location2.X=3265.141mil|Location1.Y=2784.377mil|Location2.Y=2795.627mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (2.004mil &lt; 10mil) Between Pad C6-1(2220mil,1448mil) on Top Layer And Via (2260mil,1505mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [2.004mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2061.625mil|Location2.X=2072.875mil|Location1.Y=3234.375mil|Location2.Y=3245.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2061.625mil|Location2.X=2072.875mil|Location1.Y=3234.375mil|Location2.Y=3245.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.5mil &lt; 10mil) Between Pad C7-1(1110mil,1916mil) on Top Layer And Via (1035mil,1925mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [6.5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2104.375mil|Location2.X=2115.625mil|Location1.Y=3253.375mil|Location2.Y=3264.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2104.375mil|Location2.X=2115.625mil|Location1.Y=3253.375mil|Location2.Y=3264.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4mil &lt; 10mil) Between Pad C7-1(1110mil,1916mil) on Top Layer And Via (1110mil,1975mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [4mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2104.375mil|Location2.X=2115.625mil|Location1.Y=3315.375mil|Location2.Y=3326.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2104.375mil|Location2.X=2115.625mil|Location1.Y=3315.375mil|Location2.Y=3326.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4mil &lt; 10mil) Between Pad C7-2(1110mil,2034mil) on Top Layer And Via (1110mil,1975mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [4mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3544.375mil|Location2.X=3555.625mil|Location1.Y=1877.875mil|Location2.Y=1889.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3544.375mil|Location2.X=3555.625mil|Location1.Y=1877.875mil|Location2.Y=1889.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5mil &lt; 10mil) Between Pad C9-1(2550mil,540mil) on Top Layer And Via (2550mil,600mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3544.375mil|Location2.X=3555.625mil|Location1.Y=1939.875mil|Location2.Y=1951.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3544.375mil|Location2.X=3555.625mil|Location1.Y=1939.875mil|Location2.Y=1951.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3mil &lt; 10mil) Between Pad C9-2(2550mil,658mil) on Top Layer And Via (2550mil,600mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [3mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2332.048mil|Location2.X=2343.298mil|Location1.Y=3468.076mil|Location2.Y=3479.326mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2332.048mil|Location2.X=2343.298mil|Location1.Y=3468.076mil|Location2.Y=3479.326mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.843mil &lt; 10mil) Between Pad D1-1(1316.988mil,2177.402mil) on Top Layer And Pad D1-2(1316.988mil,2140mil) on Top Layer [Top Solder] Mask Sliver [7.843mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2332.048mil|Location2.X=2343.298mil|Location1.Y=3430.674mil|Location2.Y=3441.924mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2332.048mil|Location2.X=2343.298mil|Location1.Y=3430.674mil|Location2.Y=3441.924mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.843mil &lt; 10mil) Between Pad D1-2(1316.988mil,2140mil) on Top Layer And Pad D1-3(1316.988mil,2102.598mil) on Top Layer [Top Solder] Mask Sliver [7.843mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2383.69mil|Location2.X=2394.94mil|Location1.Y=3430.674mil|Location2.Y=3441.924mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2383.69mil|Location2.X=2394.94mil|Location1.Y=3430.674mil|Location2.Y=3441.924mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.843mil &lt; 10mil) Between Pad D1-4(1410mil,2102.598mil) on Top Layer And Pad D1-5(1410mil,2140mil) on Top Layer [Top Solder] Mask Sliver [7.843mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2383.69mil|Location2.X=2394.94mil|Location1.Y=3468.076mil|Location2.Y=3479.326mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2383.69mil|Location2.X=2394.94mil|Location1.Y=3468.076mil|Location2.Y=3479.326mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.843mil &lt; 10mil) Between Pad D1-5(1410mil,2140mil) on Top Layer And Pad D1-6(1410mil,2177.402mil) on Top Layer [Top Solder] Mask Sliver [7.843mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3500.835mil|Location2.Y=3512.085mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3500.835mil|Location2.Y=3512.085mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.654mil &lt; 10mil) Between Pad J1-1(306.254mil,2207.205mil) on Multi-Layer And Pad J1-2(258.864mil,2175.715mil) on Multi-Layer [Top Solder] Mask Sliver [1.654mil] / [Bottom Solder] Mask Sliver [1.654mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1300.629mil|Location2.X=1311.879mil|Location1.Y=3485.085mil|Location2.Y=3496.335mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1300.629mil|Location2.X=1311.879mil|Location1.Y=3485.085mil|Location2.Y=3496.335mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.746mil &lt; 10mil) Between Pad J1-1(306.254mil,2207.205mil) on Multi-Layer And Pad J1-3(306.254mil,2144.215mil) on Multi-Layer [Top Solder] Mask Sliver [7.746mil] / [Bottom Solder] Mask Sliver [7.746mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3469.34mil|Location2.Y=3480.59mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3469.34mil|Location2.Y=3480.59mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.66mil &lt; 10mil) Between Pad J1-2(258.864mil,2175.715mil) on Multi-Layer And Pad J1-3(306.254mil,2144.215mil) on Multi-Layer [Top Solder] Mask Sliver [1.66mil] / [Bottom Solder] Mask Sliver [1.66mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.239mil|Location2.X=1264.489mil|Location1.Y=3453.595mil|Location2.Y=3464.845mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.239mil|Location2.X=1264.489mil|Location1.Y=3453.595mil|Location2.Y=3464.845mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.746mil &lt; 10mil) Between Pad J1-2(258.864mil,2175.715mil) on Multi-Layer And Pad J1-4(258.864mil,2112.725mil) on Multi-Layer [Top Solder] Mask Sliver [7.746mil] / [Bottom Solder] Mask Sliver [7.746mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3437.845mil|Location2.Y=3449.095mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3437.845mil|Location2.Y=3449.095mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.654mil &lt; 10mil) Between Pad J1-3(306.254mil,2144.215mil) on Multi-Layer And Pad J1-4(258.864mil,2112.725mil) on Multi-Layer [Top Solder] Mask Sliver [1.654mil] / [Bottom Solder] Mask Sliver [1.654mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1300.629mil|Location2.X=1311.879mil|Location1.Y=3422.095mil|Location2.Y=3433.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1300.629mil|Location2.X=1311.879mil|Location1.Y=3422.095mil|Location2.Y=3433.345mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.746mil &lt; 10mil) Between Pad J1-3(306.254mil,2144.215mil) on Multi-Layer And Pad J1-5(306.254mil,2081.225mil) on Multi-Layer [Top Solder] Mask Sliver [7.746mil] / [Bottom Solder] Mask Sliver [7.746mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3406.35mil|Location2.Y=3417.6mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.934mil|Location2.X=1288.184mil|Location1.Y=3406.35mil|Location2.Y=3417.6mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.66mil &lt; 10mil) Between Pad J1-4(258.864mil,2112.725mil) on Multi-Layer And Pad J1-5(306.254mil,2081.225mil) on Multi-Layer [Top Solder] Mask Sliver [1.66mil] / [Bottom Solder] Mask Sliver [1.66mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2289.375mil|Location2.X=2300.625mil|Location1.Y=2114.875mil|Location2.Y=2126.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2289.375mil|Location2.X=2300.625mil|Location1.Y=2114.875mil|Location2.Y=2126.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3mil &lt; 10mil) Between Pad LED5-1(1295mil,833mil) on Top Layer And Via (1295mil,775mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [3mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2289.375mil|Location2.X=2300.625mil|Location1.Y=2052.875mil|Location2.Y=2064.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2289.375mil|Location2.X=2300.625mil|Location1.Y=2052.875mil|Location2.Y=2064.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5mil &lt; 10mil) Between Pad LED5-2(1295mil,715mil) on Top Layer And Via (1295mil,775mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2089.375mil|Location2.X=2100.625mil|Location1.Y=1739.375mil|Location2.Y=1750.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2089.375mil|Location2.X=2100.625mil|Location1.Y=1739.375mil|Location2.Y=1750.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4mil &lt; 10mil) Between Pad R4-1(1123mil,430mil) on Top Layer And Via (1064mil,430mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [4mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2027.375mil|Location2.X=2038.625mil|Location1.Y=1739.375mil|Location2.Y=1750.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2027.375mil|Location2.X=2038.625mil|Location1.Y=1739.375mil|Location2.Y=1750.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4mil &lt; 10mil) Between Pad R4-2(1005mil,430mil) on Top Layer And Via (1064mil,430mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [4mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3167.125mil|Location2.X=3178.375mil|Location1.Y=2464.375mil|Location2.Y=2475.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3167.125mil|Location2.X=3178.375mil|Location1.Y=2464.375mil|Location2.Y=2475.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.5mil &lt; 10mil) Between Pad R6-2(2130mil,1142mil) on Top Layer And Via (2205mil,1155mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [6.5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2527.125mil|Location2.X=2538.375mil|Location1.Y=2004.375mil|Location2.Y=2015.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2527.125mil|Location2.X=2538.375mil|Location1.Y=2004.375mil|Location2.Y=2015.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.5mil &lt; 10mil) Between Pad R9-1(1490mil,715mil) on Top Layer And Via (1565mil,695mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [6.5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3713.875mil|Location2.X=3725.125mil|Location1.Y=2436.241mil|Location2.Y=2447.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3713.875mil|Location2.X=3725.125mil|Location1.Y=2436.241mil|Location2.Y=2447.491mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-1(2735mil,1095.354mil) on Top Layer And Pad U1-2(2704mil,1095.354mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3422.509mil|Location2.X=3433.759mil|Location1.Y=2335.804mil|Location2.Y=2347.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3422.509mil|Location2.X=3433.759mil|Location1.Y=2335.804mil|Location2.Y=2347.054mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-10(2459.646mil,1010.929mil) on Top Layer And Pad U1-9(2459.646mil,1041.929mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3422.509mil|Location2.X=3433.759mil|Location1.Y=2272.804mil|Location2.Y=2284.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3422.509mil|Location2.X=3433.759mil|Location1.Y=2272.804mil|Location2.Y=2284.054mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-11(2459.646mil,978.929mil) on Top Layer And Pad U1-12(2459.646mil,947.929mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3422.509mil|Location2.X=3433.759mil|Location1.Y=2209.804mil|Location2.Y=2221.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3422.509mil|Location2.X=3433.759mil|Location1.Y=2209.804mil|Location2.Y=2221.054mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-13(2459.646mil,915.929mil) on Top Layer And Pad U1-14(2459.646mil,884.929mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3422.509mil|Location2.X=3433.759mil|Location1.Y=2146.804mil|Location2.Y=2158.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3422.509mil|Location2.X=3433.759mil|Location1.Y=2146.804mil|Location2.Y=2158.054mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-15(2459.646mil,852.929mil) on Top Layer And Pad U1-16(2459.646mil,821.929mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3524.875mil|Location2.X=3536.125mil|Location1.Y=2042.509mil|Location2.Y=2053.759mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3524.875mil|Location2.X=3536.125mil|Location1.Y=2042.509mil|Location2.Y=2053.759mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-17(2515mil,764.646mil) on Top Layer And Pad U1-18(2546mil,764.646mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3587.875mil|Location2.X=3599.125mil|Location1.Y=2042.509mil|Location2.Y=2053.759mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3587.875mil|Location2.X=3599.125mil|Location1.Y=2042.509mil|Location2.Y=2053.759mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-19(2578mil,764.646mil) on Top Layer And Pad U1-20(2609mil,764.646mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3650.875mil|Location2.X=3662.125mil|Location1.Y=2042.509mil|Location2.Y=2053.759mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3650.875mil|Location2.X=3662.125mil|Location1.Y=2042.509mil|Location2.Y=2053.759mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-21(2641mil,764.646mil) on Top Layer And Pad U1-22(2672mil,764.646mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3634.375mil|Location2.X=3645.625mil|Location1.Y=2110.454mil|Location2.Y=2121.704mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3634.375mil|Location2.X=3645.625mil|Location1.Y=2110.454mil|Location2.Y=2121.704mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.842mil &lt; 10mil) Between Pad U1-21(2641mil,764.646mil) on Top Layer And Via (2640mil,835mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [9.842mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3713.875mil|Location2.X=3725.125mil|Location1.Y=2042.509mil|Location2.Y=2053.759mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3713.875mil|Location2.X=3725.125mil|Location1.Y=2042.509mil|Location2.Y=2053.759mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-23(2704mil,764.646mil) on Top Layer And Pad U1-24(2735mil,764.646mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3816.241mil|Location2.X=3827.491mil|Location1.Y=2146.804mil|Location2.Y=2158.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3816.241mil|Location2.X=3827.491mil|Location1.Y=2146.804mil|Location2.Y=2158.054mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-25(2790.354mil,821.929mil) on Top Layer And Pad U1-26(2790.354mil,852.929mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3816.241mil|Location2.X=3827.491mil|Location1.Y=2209.804mil|Location2.Y=2221.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3816.241mil|Location2.X=3827.491mil|Location1.Y=2209.804mil|Location2.Y=2221.054mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-27(2790.354mil,884.929mil) on Top Layer And Pad U1-28(2790.354mil,915.929mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3816.241mil|Location2.X=3827.491mil|Location1.Y=2272.804mil|Location2.Y=2284.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3816.241mil|Location2.X=3827.491mil|Location1.Y=2272.804mil|Location2.Y=2284.054mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-29(2790.354mil,947.929mil) on Top Layer And Pad U1-30(2790.354mil,978.929mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3650.875mil|Location2.X=3662.125mil|Location1.Y=2436.241mil|Location2.Y=2447.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3650.875mil|Location2.X=3662.125mil|Location1.Y=2436.241mil|Location2.Y=2447.491mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-3(2672mil,1095.354mil) on Top Layer And Pad U1-4(2641mil,1095.354mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3669.375mil|Location2.X=3680.625mil|Location1.Y=2368.296mil|Location2.Y=2379.546mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3669.375mil|Location2.X=3680.625mil|Location1.Y=2368.296mil|Location2.Y=2379.546mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.842mil &lt; 10mil) Between Pad U1-3(2672mil,1095.354mil) on Top Layer And Via (2675mil,1025mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [9.842mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3816.241mil|Location2.X=3827.491mil|Location1.Y=2335.804mil|Location2.Y=2347.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3816.241mil|Location2.X=3827.491mil|Location1.Y=2335.804mil|Location2.Y=2347.054mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-31(2790.354mil,1010.929mil) on Top Layer And Pad U1-32(2790.354mil,1041.929mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3587.875mil|Location2.X=3599.125mil|Location1.Y=2436.241mil|Location2.Y=2447.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3587.875mil|Location2.X=3599.125mil|Location1.Y=2436.241mil|Location2.Y=2447.491mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-5(2609mil,1095.354mil) on Top Layer And Pad U1-6(2578mil,1095.354mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3599.375mil|Location2.X=3610.625mil|Location1.Y=2368.296mil|Location2.Y=2379.546mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3599.375mil|Location2.X=3610.625mil|Location1.Y=2368.296mil|Location2.Y=2379.546mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.842mil &lt; 10mil) Between Pad U1-5(2609mil,1095.354mil) on Top Layer And Via (2605mil,1025mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [9.842mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3524.875mil|Location2.X=3536.125mil|Location1.Y=2436.241mil|Location2.Y=2447.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3524.875mil|Location2.X=3536.125mil|Location1.Y=2436.241mil|Location2.Y=2447.491mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9mil &lt; 10mil) Between Pad U1-7(2546mil,1095.354mil) on Top Layer And Pad U1-8(2515mil,1095.354mil) on Top Layer [Top Solder] Mask Sliver [9mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3348.919mil|Location2.X=3360.169mil|Location1.Y=2599.482mil|Location2.Y=2610.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3348.919mil|Location2.X=3360.169mil|Location1.Y=2599.482mil|Location2.Y=2610.732mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.984mil &lt; 10mil) Between Pad Y2-4(2326.499mil,1258.304mil) on Top Layer And Via (2380mil,1305mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.984mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDZNYD53RBHPHCDVABCL5PIV4XJO2AOMUPHUANVCHAQGM0RPXVQ2EE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3249.375mil|Location2.X=3260.625mil|Location1.Y=2615.343mil|Location2.Y=2626.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3249.375mil|Location2.X=3260.625mil|Location1.Y=2615.343mil|Location2.Y=2626.593mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Arc (2255mil,1300mil) on Top Overlay And Pad C6-2(2220mil,1330mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3176.617mil|Location2.X=3187.867mil|Location1.Y=2634.381mil|Location2.Y=2645.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3176.617mil|Location2.X=3187.867mil|Location1.Y=2634.381mil|Location2.Y=2645.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.516mil &lt; 10mil) Between Pad C6-2(2220mil,1330mil) on Top Layer And Text "R6" (2075.016mil,1315.01mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [4.516mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3254.63mil|Location2.X=3265.88mil|Location1.Y=2661.375mil|Location2.Y=2672.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3254.63mil|Location2.X=3265.88mil|Location1.Y=2661.375mil|Location2.Y=2672.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.51mil &lt; 10mil) Between Pad C6-2(2220mil,1330mil) on Top Layer And Text "Y2" (2250.016mil,1330.01mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.51mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2331.048mil|Location2.X=2342.298mil|Location1.Y=3504.965mil|Location2.Y=3516.215mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2331.048mil|Location2.X=2342.298mil|Location1.Y=3504.965mil|Location2.Y=3516.215mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.819mil &lt; 10mil) Between Pad D1-1(1316.988mil,2177.402mil) on Top Layer And Track (1332.756mil,2204mil)(1391.811mil,2204mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.819mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2331.048mil|Location2.X=2342.298mil|Location1.Y=3393.784mil|Location2.Y=3405.034mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2331.048mil|Location2.X=2342.298mil|Location1.Y=3393.784mil|Location2.Y=3405.034mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.819mil &lt; 10mil) Between Pad D1-3(1316.988mil,2102.598mil) on Top Layer And Track (1333.701mil,2076mil)(1392.756mil,2076mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.819mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2384.69mil|Location2.X=2395.94mil|Location1.Y=3393.784mil|Location2.Y=3405.034mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2384.69mil|Location2.X=2395.94mil|Location1.Y=3393.784mil|Location2.Y=3405.034mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.819mil &lt; 10mil) Between Pad D1-4(1410mil,2102.598mil) on Top Layer And Track (1333.701mil,2076mil)(1392.756mil,2076mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.819mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2384.69mil|Location2.X=2395.94mil|Location1.Y=3504.965mil|Location2.Y=3516.215mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2384.69mil|Location2.X=2395.94mil|Location1.Y=3504.965mil|Location2.Y=3516.215mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.819mil &lt; 10mil) Between Pad D1-6(1410mil,2177.402mil) on Top Layer And Track (1332.756mil,2204mil)(1391.811mil,2204mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.819mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1314.67mil|Location2.X=1325.92mil|Location1.Y=3540.853mil|Location2.Y=3552.103mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1314.67mil|Location2.X=1325.92mil|Location1.Y=3540.853mil|Location2.Y=3552.103mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.835mil &lt; 10mil) Between Pad J1-1(306.254mil,2207.205mil) on Multi-Layer And Track (324.921mil,2239.681mil)(324.921mil,2245.475mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.835mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1314.67mil|Location2.X=1325.92mil|Location1.Y=3366.327mil|Location2.Y=3377.577mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1314.67mil|Location2.X=1325.92mil|Location1.Y=3366.327mil|Location2.Y=3377.577mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.835mil &lt; 10mil) Between Pad J1-5(306.254mil,2081.225mil) on Multi-Layer And Track (324.921mil,2027.142mil)(324.921mil,2048.749mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.835mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1241.507mil|Location2.X=1252.757mil|Location1.Y=3626.93mil|Location2.Y=3638.18mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1241.507mil|Location2.X=1252.757mil|Location1.Y=3626.93mil|Location2.Y=3638.18mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.91mil &lt; 10mil) Between Pad J1-6(270.754mil,2291.455mil) on Multi-Layer And Text "C2" (160.016mil,2325.01mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [4.91mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3742.648mil|Location2.X=3753.898mil|Location1.Y=2391.609mil|Location2.Y=2402.859mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3742.648mil|Location2.X=3753.898mil|Location1.Y=2391.609mil|Location2.Y=2402.859mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.546mil &lt; 10mil) Between Pad U1-1(2735mil,1095.354mil) on Top Layer And Track (2754.546mil,1082.234mil)(2774.546mil,1082.234mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [6.546mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3742.875mil|Location2.X=3754.125mil|Location1.Y=2089.375mil|Location2.Y=2100.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3742.875mil|Location2.X=3754.125mil|Location1.Y=2089.375mil|Location2.Y=2100.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7mil &lt; 10mil) Between Pad U1-24(2735mil,764.646mil) on Top Layer And Track (2755mil,780mil)(2775mil,780mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3769.375mil|Location2.X=3780.625mil|Location1.Y=2116.84mil|Location2.Y=2128.09mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3769.375mil|Location2.X=3780.625mil|Location1.Y=2116.84mil|Location2.Y=2128.09mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.929mil &lt; 10mil) Between Pad U1-25(2790.354mil,821.929mil) on Top Layer And Track (2775mil,780mil)(2775mil,800mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.929mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.921mil|Location2.X=3780.171mil|Location1.Y=2364.956mil|Location2.Y=2376.206mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.921mil|Location2.X=3780.171mil|Location1.Y=2364.956mil|Location2.Y=2376.206mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.304mil &lt; 10mil) Between Pad U1-32(2790.354mil,1041.929mil) on Top Layer And Track (2774.546mil,1062.234mil)(2774.546mil,1082.234mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.304mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3495.369mil|Location2.X=3506.619mil|Location1.Y=2393.313mil|Location2.Y=2404.563mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3495.369mil|Location2.X=3506.619mil|Location1.Y=2393.313mil|Location2.Y=2404.563mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.011mil &lt; 10mil) Between Pad U1-8(2515mil,1095.354mil) on Top Layer And Track (2473.989mil,1083.938mil)(2493.989mil,1083.938mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.011mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3468.364mil|Location2.X=3479.614mil|Location1.Y=2365.808mil|Location2.Y=2377.058mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3468.364mil|Location2.X=3479.614mil|Location1.Y=2365.808mil|Location2.Y=2377.058mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.008mil &lt; 10mil) Between Pad U1-9(2459.646mil,1041.929mil) on Top Layer And Track (2473.989mil,1063.938mil)(2473.989mil,1083.938mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.008mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDCJKR3X245H2LONISK3O5J13MLMK55EPXO4IGCGC5Y2BSMQMO0KMM"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.333mil|Location2.X=1497.583mil|Location1.Y=2001.894mil|Location2.Y=2013.144mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.333mil|Location2.X=1497.583mil|Location1.Y=2001.894mil|Location2.Y=2013.144mil|Absolute=True">Silk To Silk Clearance Constraint: (7.525mil &lt; 10mil) Between Arc (495.064mil,706mil) on Top Overlay And Text "C4" (460mil,624mil) on Top Overlay Silk Text to Silk Clearance [7.525mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1534.672mil|Location2.X=1545.922mil|Location1.Y=3330.929mil|Location2.Y=3342.179mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1534.672mil|Location2.X=1545.922mil|Location1.Y=3330.929mil|Location2.Y=3342.179mil|Absolute=True">Silk To Silk Clearance Constraint: (2.684mil &lt; 10mil) Between Arc (554mil,2012.65mil) on Top Overlay And Text "C11" (405.021mil,2025.01mil) on Top Overlay Silk Text to Silk Clearance [2.684mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1751.879mil|Location2.X=1763.129mil|Location1.Y=3039.369mil|Location2.Y=3050.619mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1751.879mil|Location2.X=1763.129mil|Location1.Y=3039.369mil|Location2.Y=3050.619mil|Absolute=True">Silk To Silk Clearance Constraint: (5.04mil &lt; 10mil) Between Text "C14" (765.024mil,1680.01mil) on Top Overlay And Text "R8" (650.016mil,1680.01mil) on Top Overlay Silk Text to Silk Clearance [5.04mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1079.365mil|Location2.X=1090.615mil|Location1.Y=3733.12mil|Location2.Y=3744.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1079.365mil|Location2.X=1090.615mil|Location1.Y=3733.12mil|Location2.Y=3744.37mil|Absolute=True">Silk To Silk Clearance Constraint: (7.51mil &lt; 10mil) Between Text "J1" (15.013mil,2355.01mil) on Top Overlay And Track (70mil,2435mil)(490mil,2435mil) on Top Overlay Silk Text to Silk Clearance [7.51mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3175.367mil|Location2.X=3186.617mil|Location1.Y=2684.365mil|Location2.Y=2695.615mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3175.367mil|Location2.X=3186.617mil|Location1.Y=2684.365mil|Location2.Y=2695.615mil|Absolute=True">Silk To Silk Clearance Constraint: (2.016mil &lt; 10mil) Between Text "R6" (2075.016mil,1315.01mil) on Top Overlay And Track (2185mil,1370mil)(2185mil,1408mil) on Top Overlay Silk Text to Silk Clearance [2.016mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1115.627mil|Location2.X=1126.877mil|Location1.Y=3901.88mil|Location2.Y=3913.13mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1115.627mil|Location2.X=1126.877mil|Location1.Y=3901.88mil|Location2.Y=3913.13mil|Absolute=True">Silk To Silk Clearance Constraint: (9.531mil &lt; 10mil) Between Text "TP1" (55.023mil,2600.01mil) on Top Overlay And Track (127.5mil,2585mil)(134.772mil,2585mil) on Top Overlay Silk Text to Silk Clearance [9.531mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3246.183mil|Location2.X=3253.849mil|Location1.Y=2701.157mil|Location2.Y=2708.824mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Vaishnavi\Documents\2_Spring_2023\PCB\Design Projects\New folder\PCB_Board_3_Golden_Arduino\Final\PCB_Project\Golden_arduino Updated.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3246.183mil|Location2.X=3253.849mil|Location1.Y=2701.157mil|Location2.Y=2708.824mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "Y2" (2250.016mil,1330.01mil) on Top Overlay And Track (2255mil,1370mil)(2255mil,1408mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

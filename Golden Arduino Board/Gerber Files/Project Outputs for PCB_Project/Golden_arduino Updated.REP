@@ -1,0 +1,201 @@
+*************************************************************
+FileName = Golden_arduino Updated.GBR
+AutoAperture = True
+*************************************************************
+Generating : Top Layer
+      File : Golden_arduino Updated.GTL
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D10
+    D18
+    D19
+    D20
+    D21
+    D22
+    D23
+    D24
+    D25
+    D26
+    D27
+    D28
+    D47
+    D48
+    D49
+    D50
+    D51
+    D52
+    D53
+    D54
+    D55
+    D56
+*************************************************************
+
+*************************************************************
+Generating : Top Overlay
+      File : Golden_arduino Updated.GTO
+
+    Adding Layer      : Top Overlay
+
+
+Used DCodes :
+    D10
+    D11
+    D12
+    D13
+    D14
+    D15
+    D16
+    D17
+*************************************************************
+
+*************************************************************
+Generating : Bottom Paste
+      File : Golden_arduino Updated.GBP
+
+    Adding Layer      : Bottom Paste
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+*************************************************************
+
+*************************************************************
+Generating : Bottom Overlay
+      File : Golden_arduino Updated.GBO
+
+    Adding Layer      : Bottom Overlay
+
+
+Used DCodes :
+*************************************************************
+
+*************************************************************
+Generating : Top Paste
+      File : Golden_arduino Updated.GTP
+
+    Adding Layer      : Top Paste
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D18
+    D19
+    D20
+    D21
+    D22
+    D23
+    D24
+    D25
+    D26
+    D27
+    D28
+*************************************************************
+
+*************************************************************
+Generating : Bottom Layer
+      File : Golden_arduino Updated.GBL
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D10
+    D48
+    D49
+    D50
+    D51
+    D52
+    D53
+    D54
+    D55
+    D56
+*************************************************************
+
+*************************************************************
+Generating : Keep-Out Layer
+      File : Golden_arduino Updated.GKO
+
+    Adding Layer      : Keep-Out Layer
+
+
+Used DCodes :
+    D48
+*************************************************************
+
+*************************************************************
+Generating : Top Solder
+      File : Golden_arduino Updated.GTS
+
+    Adding Layer      : Top Solder
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D26
+    D29
+    D30
+    D31
+    D32
+    D33
+    D34
+    D35
+    D36
+    D37
+    D38
+    D39
+    D40
+    D41
+    D42
+    D43
+    D44
+    D45
+    D46
+*************************************************************
+
+*************************************************************
+Generating : Bottom Solder
+      File : Golden_arduino Updated.GBS
+
+    Adding Layer      : Bottom Solder
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D39
+    D40
+    D41
+    D42
+    D43
+    D44
+    D45
+    D46
+*************************************************************
+
+*************************************************************
+Generating : Profile
+      File : Golden_arduino Updated.GM
+
+
+Used DCodes :
+    D57
+*************************************************************
+

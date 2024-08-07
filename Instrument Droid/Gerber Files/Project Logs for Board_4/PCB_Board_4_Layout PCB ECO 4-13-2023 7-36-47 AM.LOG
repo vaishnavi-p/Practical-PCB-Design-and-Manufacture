@@ -1,0 +1,12 @@
+Removed Pin From Net: NetName=+5V Pin=C10-2
+Removed Pin From Net: NetName=+5V Pin=C13-2
+Removed Pin From Net: NetName=+5V Pin=U2-6
+Removed Pin From Net: NetName=+5V Pin=U3-16
+Change Component Designator: OldDesignator=6 NewDesignator=R14
+Added Pin To Net: NetName=+5 Pin=C10-2
+Added Pin To Net: NetName=+5 Pin=C13-2
+Added Pin To Net: NetName=GND Pin=U1-1
+Added Pin To Net: NetName=+5 Pin=U2-6
+Added Pin To Net: NetName=+5 Pin=U3-16
+Added Room: Name=PCB_Board4_schematic
+Added Rule: Name=Schematic Width Constraint_5

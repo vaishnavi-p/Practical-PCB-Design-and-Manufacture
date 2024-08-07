@@ -1,0 +1,54 @@
+Removed Pin From Net: NetName=R_sense- Pin=R13-1
+Removed Pin From Net: NetName=Net3_3 Pin=R13-2
+Removed Pin From Net: NetName=Net3_1 Pin=R14-1
+Removed Pin From Net: NetName=R_sense- Pin=R14-2
+Change Component Comment : Designator=R13 Old Comment=1 Ohm New Comment=10 Ohm
+Change Component Comment : Designator=R14 Old Comment=10 Ohm New Comment=1 Ohm
+Change Component Comment : Designator=C6 Old Comment=22uF New Comment=22pF
+Change Component Comment : Designator=C7 Old Comment=22uF New Comment=22pF
+Change component parameters: Designator = "C6" ("C6"); Footprint = "1206_Passive_Capacitor"; UniqueID = "\OISPDPFJ" ("\OISPDPFJ")
+Change component parameters (AddParameter): Name = "Datasheet"; Value = "https://datasheet.lcsc.com/lcsc/1810311150_FH-Guangdong-Fenghua-Advanced-Tech-1206CG220J102NT_C313096.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "LCSC Part#"; Value = "C313096"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MFR Part #"; Value = "1206CG220J102NT"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Type"; Value = "Extended"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = "22pF"; VariantName = "[No Variations]"
+Change component parameters: Designator = "C7" ("C7"); Footprint = "1206_Passive_Capacitor"; UniqueID = "\FLLGILAU" ("\FLLGILAU")
+Change component parameters (AddParameter): Name = "Datasheet"; Value = "https://datasheet.lcsc.com/lcsc/1810311150_FH-Guangdong-Fenghua-Advanced-Tech-1206CG220J102NT_C313096.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "LCSC Part#"; Value = "C313096"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MFR Part #"; Value = "1206CG220J102NT"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Type"; Value = "Extended"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = "22pF"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R13" ("R13"); Footprint = "1206_Passive_Resitor"; UniqueID = "\FFOPJGZY" ("\FFOPJGZY")
+Change component parameters (AddParameter): Name = "Datasheet"; Value = "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-1206W4F100JT5E_C17903.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "LCSC Part#"; Value = "C17903"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MFR Part #"; Value = "1206W4F100JT5E"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Type"; Value = "Basic"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = "10 Ohm"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R14" ("R14"); Footprint = "1206_Passive_Resitor"; UniqueID = "\AZWJHNZI" ("\AZWJHNZI")
+Change component parameters (AddParameter): Name = "Datasheet"; Value = "https://datasheet.lcsc.com/lcsc/1810301410_UNI-ROYAL-Uniroyal-Elec-1206W4J010JT5E_C1409.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "LCSC Part#"; Value = "C1409"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MFR Part #"; Value = "1206W4J010JT5E"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Type"; Value = "Extended"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = "1 Ohm"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=Net3_1 Pin=R13-1
+Added Pin To Net: NetName=R_sense- Pin=R13-2
+Added Pin To Net: NetName=R_sense- Pin=R14-1
+Added Pin To Net: NetName=Net3_3 Pin=R14-2
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component 2 PREC003SAAN-RC
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component 3 PREC003SAAN-RC
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component C20 22uF
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component LED5 Red
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component P2 2P Screw Terminal Block
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component P3 Power Jack
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component Q1 AO3400A
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component R9 10k
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component R10 10k
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component R11 10k
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component R12 10k
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component R13 10 Ohm
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component R14 1 Ohm
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component R15 0 Ohm
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component R16 0 Ohm
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component TP14 TP_Comp_Out
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component TP15 TP_Op_Amp_Vout
+Added Member To Class: ClassName=PCB_Board4_schematic Member=Component U5 MCP6002T-I/SN

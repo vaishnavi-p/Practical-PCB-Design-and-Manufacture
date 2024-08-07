@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=+5V Pin=C11-2
+Removed Pin From Net: NetName=+5V Pin=U2-16
+Added Pin To Net: NetName=USB_+5V Pin=C11-2
+Added Pin To Net: NetName=USB_+5V Pin=U2-16
+Added Room: Name=Golden_arduino Updated

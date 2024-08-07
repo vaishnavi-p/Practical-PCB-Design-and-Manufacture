@@ -1,0 +1,15 @@
+Removed Pin From Net: NetName=CH340_TxD Pin=J4-7
+Removed Pin From Net: NetName=CH340_RxD Pin=J4-8
+Removed Pin From Net: NetName=CH340_RxD Pin=U1-30
+Removed Pin From Net: NetName=CH340_TxD Pin=U1-31
+Change Component Designator: OldDesignator=SDA NewDesignator=TP11
+Added Pin To Net: NetName=+5V Pin=C11-2
+Added Pin To Net: NetName=CH340_RxD Pin=J4-7
+Added Pin To Net: NetName=CH340_TxD Pin=J4-8
+Added Pin To Net: NetName=CH340_TxD Pin=U1-30
+Added Pin To Net: NetName=CH340_RxD Pin=U1-31
+Added Pin To Net: NetName=+5V Pin=U2-16
+Change Class Name : Old Net Name=Golden_arduino New Net Name=Golden_arduino Updated
+Added Member To Class: ClassName=Golden_arduino Updated Member=Component C5 22pF
+Added Member To Class: ClassName=Golden_arduino Updated Member=Component C6 22pF
+Added Room: Name=Golden_arduino Updated

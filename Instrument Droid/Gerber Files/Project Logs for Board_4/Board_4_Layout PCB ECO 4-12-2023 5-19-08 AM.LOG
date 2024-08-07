@@ -1,0 +1,2 @@
+Removed Pin From Net: NetName=GND Pin=C21-2
+Removed Member From Class: ClassName=PCB_Board4_schematic Member=C21
